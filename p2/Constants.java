@@ -38,15 +38,15 @@ public interface Constants
 	/** Identifier identifying a chair as a barber's chair */
 	public final static int BARBER_CHAIR = 1;
 	/** The minimum number of milliseconds a barber sleeps between each work period */
-	public final static int MIN_BARBER_SLEEP = 0;
+	public final static int MIN_BARBER_SLEEP = 1;
 	/** The maximum number of milliseconds a barber sleeps between each work period */
 	public final static int MAX_BARBER_SLEEP = 6000;
 	/** The minimum number of milliseconds it takes a barber to cut a customer's hair */
-	public final static int MIN_BARBER_WORK = 0;
+	public final static int MIN_BARBER_WORK = 1;
 	/** The maximum number of milliseconds it takes a barber to cut a customer's hair */
 	public final static int MAX_BARBER_WORK = 6000;
 	/** The minimum number of milliseconds between each time a new customer arrives */
 	public final static int MIN_DOORMAN_SLEEP = 100;
 	/** The maximum number of milliseconds between each time a new customer arrives */
-	public final static int MAX_DOORMAN_SLEEP = 5900;
+	public final static int MAX_DOORMAN_SLEEP = 2000;
 }
