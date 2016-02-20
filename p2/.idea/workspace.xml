@@ -2,7 +2,39 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1966425a-0b5e-424e-b901-840abe5647aa" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/p2/images/barber.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/p2/images/barberchair.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/p2/images/customer0.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/p2/images/customer1.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/p2/images/customer10.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/p2/images/customer11.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/p2/images/customer12.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/p2/images/customer13.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/p2/images/customer14.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/p2/images/customer15.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/p2/images/customer2.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/p2/images/customer3.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/p2/images/customer4.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/p2/images/customer5.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/p2/images/customer6.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/p2/images/customer7.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/p2/images/customer8.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/p2/images/customer9.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/p2/images/desk.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/p2/images/floor.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/p2/images/loungechair.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/p2/images/sleep.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/p2/images/table.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/p2/images/walls.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/p2/.idea/.name" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/p2/.idea/compiler.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/p2/.idea/misc.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/p2/.idea/modules.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/p2/p2.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/p2/.idea/copyright/profiles_settings.xml" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/p2/.idea/vcs.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/p2/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Barber.java" afterPath="$PROJECT_DIR$/Barber.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Constants.java" afterPath="$PROJECT_DIR$/Constants.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CustomerQueue.java" afterPath="$PROJECT_DIR$/CustomerQueue.java" />
@@ -516,12 +548,12 @@
       <option name="number" value="Default" />
       <updated>1455892214376</updated>
       <workItem from="1455892217389" duration="5335000" />
-      <workItem from="1455905629208" duration="8460000" />
+      <workItem from="1455905629208" duration="8483000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="13795000" />
+    <option name="totallyTimeSpent" value="13818000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1680" height="995" extended-state="6" />
