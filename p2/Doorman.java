@@ -11,10 +11,10 @@ public class Doorman implements Runnable{
 	 * @param gui		A reference to the GUI interface.
 	 */
 
-    Gui gui;
-    CustomerQueue queue;
-    Thread thread;
-    Globals g;
+    private Gui gui;
+    private CustomerQueue queue;
+    private Thread thread;
+    private Globals g;
 	public Doorman(CustomerQueue queue, Gui gui) { 
         this.gui = gui;
         this.queue = queue;
@@ -26,8 +26,6 @@ public class Doorman implements Runnable{
 	public void startThread() {
         thread = new Thread(this);
         thread.start();
-		// Incomplete
-
 	}
 
 	/**
@@ -37,11 +35,11 @@ public class Doorman implements Runnable{
 		thread.stop();
 	}
 
-    public void addCustomer(){
+    private void addCustomer(){
         queue.addCustomerToQueue(new Customer());
     }
 
-    public void daydream(){
+    private void daydream(){
         Random randm = new Random();
         int random = randm.nextInt(g.doormanSleep);
         try {
@@ -53,7 +51,6 @@ public class Doorman implements Runnable{
 
     @Override
     public void run() {
-
         while(true){
             addCustomer();
             daydream();

@@ -11,11 +11,11 @@ public class Barber implements Runnable{
 	 * @param gui		The GUI.
 	 * @param pos		The position of this barber's chair
 	 */
-    Thread thread;
-    CustomerQueue queue;
-    Gui gui;
-    int pos;
-    Globals g;
+    private Thread thread;
+    private CustomerQueue queue;
+    private Gui gui;
+    private int pos;
+    private Globals g;
 
 	public Barber(CustomerQueue queue, Gui gui, int pos) {
         this.queue = queue;
@@ -41,31 +41,29 @@ public class Barber implements Runnable{
 
 
 
-    public void daydream(){
+    private void daydream(){
         gui.barberIsSleeping(pos);
-        Random randm = new Random();
-        int random = randm.nextInt(g.barberSleep);
-        try {
-            thread.sleep(random);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        sleep(g.barberSleep);
         gui.barberIsAwake(pos);
     }
 
-    public void cutHair(){
+    private void cutHair(){
         Customer customer = queue.removeCustomerFromQueue();
         //Checks if customer is returned
         if(customer != null) {
             gui.fillBarberChair(pos, customer);
-            Random randm = new Random();
-            int random = randm.nextInt(g.barberWork);
-            try {
-                thread.sleep(random);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            sleep(g.barberWork);
             gui.emptyBarberChair(pos);
+        }
+    }
+
+    private void sleep(int time){
+        Random randm = new Random();
+        int random = randm.nextInt(time);
+        try {
+            thread.sleep(random);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 

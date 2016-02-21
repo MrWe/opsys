@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1966425a-0b5e-424e-b901-840abe5647aa" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Barber.java" afterPath="$PROJECT_DIR$/Barber.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CustomerQueue.java" afterPath="$PROJECT_DIR$/CustomerQueue.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Doorman.java" afterPath="$PROJECT_DIR$/Doorman.java" />
     </list>
     <ignored path="p2.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -25,11 +27,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Barber.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Barber.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Barber.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.5962441">
-              <caret line="70" column="0" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="42" column="0" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -39,24 +41,20 @@
         <entry file="file://$PROJECT_DIR$/Doorman.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="16" column="14" selection-start-line="16" selection-start-column="14" selection-end-line="16" selection-end-column="14" />
+              <caret line="52" column="10" selection-start-line="52" selection-start-column="4" selection-end-line="52" selection-end-column="10" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CustomerQueue.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="CustomerQueue.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/CustomerQueue.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="75" column="0" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.81220657">
+              <caret line="60" column="0" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
               <folding>
-                <element signature="e#1950#1951#0" expanded="true" />
-                <element signature="e#1996#1997#0" expanded="true" />
-                <element signature="e#2055#2056#0" expanded="true" />
-                <element signature="e#2094#2095#0" expanded="true" />
-                <element signature="e#2556#2557#0" expanded="true" />
-                <element signature="e#2597#2598#0" expanded="true" />
+                <element signature="method#removeCustomerFromQueueHelper#0;class#CustomerQueue#0" expanded="false" />
+                <element signature="method#addCustomerToQueueHelper#0;class#CustomerQueue#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -136,8 +134,8 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/Constants.java" />
-        <option value="$PROJECT_DIR$/Doorman.java" />
         <option value="$PROJECT_DIR$/Barber.java" />
+        <option value="$PROJECT_DIR$/Doorman.java" />
         <option value="$PROJECT_DIR$/CustomerQueue.java" />
       </list>
     </option>
@@ -514,12 +512,12 @@
       <updated>1455892214376</updated>
       <workItem from="1455892217389" duration="5335000" />
       <workItem from="1455905629208" duration="8906000" />
-      <workItem from="1456057149500" duration="3721000" />
+      <workItem from="1456057149500" duration="4632000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="17962000" />
+    <option name="totallyTimeSpent" value="18873000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1680" height="995" extended-state="6" />
@@ -592,12 +590,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#1950#1951#0" expanded="true" />
-            <element signature="e#1996#1997#0" expanded="true" />
-            <element signature="e#2055#2056#0" expanded="true" />
-            <element signature="e#2094#2095#0" expanded="true" />
-            <element signature="e#2556#2557#0" expanded="true" />
-            <element signature="e#2597#2598#0" expanded="true" />
+            <element signature="method#removeCustomerFromQueueHelper#0;class#CustomerQueue#0" expanded="false" />
+            <element signature="method#addCustomerToQueueHelper#0;class#CustomerQueue#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -687,12 +681,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
           <folding>
-            <element signature="e#1950#1951#0" expanded="true" />
-            <element signature="e#1996#1997#0" expanded="true" />
-            <element signature="e#2055#2056#0" expanded="true" />
-            <element signature="e#2094#2095#0" expanded="true" />
-            <element signature="e#2556#2557#0" expanded="true" />
-            <element signature="e#2597#2598#0" expanded="true" />
+            <element signature="method#removeCustomerFromQueueHelper#0;class#CustomerQueue#0" expanded="false" />
+            <element signature="method#addCustomerToQueueHelper#0;class#CustomerQueue#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -777,34 +767,38 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_20.jdk/Contents/Home/src.zip!/java/lang/Thread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33333334">
+          <caret line="140" column="6" selection-start-line="140" selection-start-column="6" selection-end-line="140" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Doorman.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="16" column="14" selection-start-line="16" selection-start-column="14" selection-end-line="16" selection-end-column="14" />
+          <caret line="52" column="10" selection-start-line="52" selection-start-column="4" selection-end-line="52" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Barber.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="42" column="0" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/CustomerQueue.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="75" column="0" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.81220657">
+          <caret line="60" column="0" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
           <folding>
-            <element signature="e#1950#1951#0" expanded="true" />
-            <element signature="e#1996#1997#0" expanded="true" />
-            <element signature="e#2055#2056#0" expanded="true" />
-            <element signature="e#2094#2095#0" expanded="true" />
-            <element signature="e#2556#2557#0" expanded="true" />
-            <element signature="e#2597#2598#0" expanded="true" />
+            <element signature="method#removeCustomerFromQueueHelper#0;class#CustomerQueue#0" expanded="false" />
+            <element signature="method#addCustomerToQueueHelper#0;class#CustomerQueue#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Barber.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.5962441">
-          <caret line="70" column="0" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>

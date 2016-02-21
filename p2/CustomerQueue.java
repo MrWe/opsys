@@ -15,8 +15,8 @@ public class CustomerQueue {
     private int queueLength;
     private Gui gui;
     private Customer[] queue;
-    private int insertIndex = 0;
-    private int removeIndex = 0;
+    private int insertIndex = 0; //Used to keep track of insertions by doorman
+    private int removeIndex = 0; // Used to keep track of removals by barbers
 
     public CustomerQueue(int queueLength, Gui gui) {
         this.queueLength = queueLength;
@@ -27,8 +27,8 @@ public class CustomerQueue {
     //Hacks a circular array into being
     public void addCustomerToQueue(Customer customer){
         /*
-        If you are at the end of the array
-        Start at the beginning
+        If you are at the end of the array,
+        start at the beginning.
         Check if seat is taken, false if taken
         */
         if(insertIndex == queueLength && !seatIsTaken(insertIndex = 0)){
