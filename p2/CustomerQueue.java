@@ -44,14 +44,12 @@ public class CustomerQueue {
         System.out.println("Remove: " + removeIndex);
         Customer customer = queue[removeIndex]; //Easier to have one Customer instance for the scope
         if(removeIndex == queueLength-1){ //If at end of array
-            //customer = queue[removeIndex]; //Tries to get customer from array
             if (customerIsNotNull(customer)){   //checks if a customer was available
                 removeCustomerFromQueueHelper();
                 removeIndex = 0; //Starts at beginning
                 return customer; //Return to barber
             }
         }
-        //customer = queue[removeIndex];
         if (customerIsNotNull(customer)){ //If not at end of array, just remove and increment to next place in array
             removeCustomerFromQueueHelper();
             removeIndex++;
