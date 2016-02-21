@@ -26,40 +26,37 @@ public class CustomerQueue {
 
     //Hacks a circular array into being
     public void addCustomerToQueue(Customer customer){
-        if(insertIndex == queueLength){ //If you are at the end of the array
-            insertIndex = 0; //Start at the beginning
-            System.out.println("Insert:" + insertIndex);
-            if(seatIsTaken(insertIndex)){ //Check if seat is taken, false if taken
+        /*
+        If you are at the end of the array
+        Start at the beginning
+        Check if seat is taken, false if taken
+        */
+        if(insertIndex == queueLength && !seatIsTaken(insertIndex = 0)){
                 addCustomerToQueueHelper(customer);
-            }
         }
         //If not at end of array, input customer if seat is not taken
-        else if(seatIsTaken(insertIndex)){
-            System.out.println("Insert:" + insertIndex);
+        else if(!seatIsTaken(insertIndex)){
             addCustomerToQueueHelper(customer);
         }
     }
     //Hacks a circular array into being
     public synchronized Customer removeCustomerFromQueue(){
-        System.out.println("Remove: " + removeIndex);
         Customer customer = queue[removeIndex]; //Easier to have one Customer instance for the scope
-        if(removeIndex == queueLength-1){ //If at end of array
-            if (customerIsNotNull(customer)){   //checks if a customer was available
+        if(customerIsNotNull(customer)) { // if customer was available
+            if (removeIndex == queueLength - 1) { //If at end of array
                 removeCustomerFromQueueHelper();
                 removeIndex = 0; //Starts at beginning
-                return customer; //Return to barber
+                return customer; //Return customer to barber
             }
-        }
-        if (customerIsNotNull(customer)){ //If not at end of array, just remove and increment to next place in array
+            //If not at end of array, just remove and increment to next place in array
             removeCustomerFromQueueHelper();
             removeIndex++;
-
         }
         return customer; //Return customer to barber
     }
 
     private boolean seatIsTaken(int index){
-        return queue[index] == null;
+        return !(queue[index] == null);
     }
 
     private boolean customerIsNotNull(Customer customer){
