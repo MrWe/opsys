@@ -16,7 +16,6 @@ public class Doorman implements Runnable{
     Thread thread;
     Globals g;
 	public Doorman(CustomerQueue queue, Gui gui) { 
-		// Incomplete
         this.gui = gui;
         this.queue = queue;
 	}
@@ -36,10 +35,8 @@ public class Doorman implements Runnable{
 	 */
 	public void stopThread() {
 		thread.stop();
-		// Incomplete
 	}
 
-	// Add more methods as needed
     public void addCustomer(){
         queue.addCustomerToQueue(new Customer());
     }

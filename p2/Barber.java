@@ -17,21 +17,16 @@ public class Barber implements Runnable{
     int pos;
     Globals g;
 
-	public Barber(CustomerQueue queue, Gui gui, int pos) { 
-		// Incomplete
-
+	public Barber(CustomerQueue queue, Gui gui, int pos) {
         this.queue = queue;
         this.gui = gui;
         this.pos = pos;
-
-
 	}
 
 	/**
 	 * Starts the barber running as a separate thread.
 	 */
 	public void startThread() {
-		// Incomplete
         thread = new Thread(this);
         thread.start();
 
@@ -41,9 +36,10 @@ public class Barber implements Runnable{
 	 * Stops the barber thread.
 	 */
 	public void stopThread() {
-		// Incomplete
         thread.stop();
 	}
+
+
 
     public void daydream(){
         gui.barberIsSleeping(pos);
@@ -59,6 +55,7 @@ public class Barber implements Runnable{
 
     public void cutHair(){
         Customer customer = queue.removeCustomerFromQueue();
+        //Checks if customer is returned
         if(customer != null) {
             gui.fillBarberChair(pos, customer);
             Random randm = new Random();
@@ -80,6 +77,5 @@ public class Barber implements Runnable{
         }
 
     }
-    // Add more methods as needed
 }
 
