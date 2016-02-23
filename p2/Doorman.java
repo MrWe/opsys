@@ -4,7 +4,7 @@ import java.util.Random;
  * This class implements the doorman's part of the
  * Barbershop thread synchronization example.
  */
-public class Doorman implements Runnable{
+public class Doorman extends Thread{
 	/**
 	 * Creates a new doorman.
 	 * @param queue		The customer queue.
@@ -35,8 +35,11 @@ public class Doorman implements Runnable{
 		thread.stop();
 	}
 
-    private void addCustomer(){
-        queue.addCustomerToQueue(new Customer());
+    private synchronized void addCustomer(){
+        synchronized (queue) {
+            queue.addCustomerToQueue(new Customer(), this);
+            queue.notifyAll();
+        }
     }
 
     private void daydream(){

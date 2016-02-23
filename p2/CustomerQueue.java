@@ -25,24 +25,35 @@ public class CustomerQueue {
 	}
 
     //Hacks a circular array into being
-    public void addCustomerToQueue(Customer customer){
+    public synchronized void addCustomerToQueue(Customer customer, Doorman doorman){
         /*
         If you are at the end of the array,
         start at the beginning.
         Check if seat is taken, false if taken
         */
-        if(insertIndex == queueLength && !seatIsTaken(insertIndex = 0)){
+        synchronized (doorman) {
+            if (insertIndex == queueLength && !seatIsTaken(insertIndex = 0)) {
                 addCustomerToQueueHelper(customer);
+            }
+            //If not at end of array, input customer if seat is not taken
+            else if (!seatIsTaken(insertIndex)) {
+                addCustomerToQueueHelper(customer);
+            }
         }
-        //If not at end of array, input customer if seat is not taken
-        else if(!seatIsTaken(insertIndex)){
-            addCustomerToQueueHelper(customer);
-        }
+
     }
     //Hacks a circular array into being
-    public synchronized Customer removeCustomerFromQueue(){
-        Customer customer = queue[removeIndex]; //Easier to have one Customer instance for the scope
-        if(customerIsNotNull(customer)) { // if customer was available
+    public synchronized Customer removeCustomerFromQueue(Barber barber){
+        Customer customer;
+            while ((customer = queue[removeIndex]) == null) { //Easier to have one Customer instance for the scope
+                try {
+                    System.out.println(barber);
+                    wait();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+            System.out.println("Remove " + removeIndex);
             if (removeIndex == queueLength - 1) { //If at end of array
                 removeCustomerFromQueueHelper();
                 removeIndex = 0; //Starts at beginning
@@ -51,8 +62,7 @@ public class CustomerQueue {
             //If not at end of array, just remove and increment to next place in array
             removeCustomerFromQueueHelper();
             removeIndex++;
-        }
-        return customer; //Return customer to barber
+            return customer; //Return customer to barber
     }
 
     private boolean seatIsTaken(int index){

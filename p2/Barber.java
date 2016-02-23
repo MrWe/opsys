@@ -4,7 +4,7 @@ import java.util.Random;
  * This class implements the barber's part of the
  * Barbershop thread synchronization example.
  */
-public class Barber implements Runnable{
+public class Barber extends Thread{
 	/**
 	 * Creates a new barber.
 	 * @param queue		The customer queue.
@@ -40,7 +40,6 @@ public class Barber implements Runnable{
 	}
 
 
-
     private void daydream(){
         gui.barberIsSleeping(pos);
         sleep(g.barberSleep);
@@ -48,7 +47,7 @@ public class Barber implements Runnable{
     }
 
     private void cutHair(){
-        Customer customer = queue.removeCustomerFromQueue();
+        Customer customer = queue.removeCustomerFromQueue(this);
         //Checks if customer is returned
         if(customer != null) {
             gui.fillBarberChair(pos, customer);
