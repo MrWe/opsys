@@ -25,57 +25,55 @@ public class CustomerQueue {
 	}
 
     //Hacks a circular array into being
-    public synchronized void addCustomerToQueue(Customer customer, Doorman doorman){
+    public synchronized void addCustomerToQueue(Customer customer){
         /*
         If you are at the end of the array,
         start at the beginning.
-        Check if seat is taken, false if taken
         */
-        synchronized (doorman) {
-            if (insertIndex == queueLength && !seatIsTaken(insertIndex = 0)) {
-                addCustomerToQueueHelper(customer);
-            }
-            //If not at end of array, input customer if seat is not taken
-            else if (!seatIsTaken(insertIndex)) {
-                addCustomerToQueueHelper(customer);
+        if(insertIndex == queueLength)
+            insertIndex = 0;
+
+        while(!(queue[insertIndex] == null)){
+            try {
+                gui.println("Doorman: Waiting");
+                wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         }
 
+        gui.println("Doorman: awake: " + insertIndex);
+        addCustomerToQueueHelper(customer);
+        this.notify();
+
     }
     //Hacks a circular array into being
-    public synchronized Customer removeCustomerFromQueue(Barber barber){
-        Customer customer;
-            while ((customer = queue[removeIndex]) == null) { //Easier to have one Customer instance for the scope
+    public synchronized Customer removeCustomerFromQueue(){
+        Customer customer;//Easier to have one Customer instance for the scope
+            if(removeIndex == queueLength)
+                removeIndex = 0;
+
+            while ((customer = queue[removeIndex]) == null) {
                 try {
-                    System.out.println(barber);
+                    gui.println("Barber: waiting");
                     wait();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
-            System.out.println("Remove " + removeIndex);
-            if (removeIndex == queueLength - 1) { //If at end of array
-                removeCustomerFromQueueHelper();
-                removeIndex = 0; //Starts at beginning
-                return customer; //Return customer to barber
-            }
-            //If not at end of array, just remove and increment to next place in array
-            removeCustomerFromQueueHelper();
+
+            //Customer found, remove and notify
+            gui.println("Barber awake: " + removeIndex);
+            removeCustomerFromQueueHelper(customer);
             removeIndex++;
+            this.notify();
             return customer; //Return customer to barber
     }
 
-    private boolean seatIsTaken(int index){
-        return !(queue[index] == null);
-    }
 
-    private boolean customerIsNotNull(Customer customer){
-        return customer != null;
-    }
-
-    private void removeCustomerFromQueueHelper(){
+    private void removeCustomerFromQueueHelper(Customer customer){
         queue[removeIndex] = null;
-        removeFromLoungeChair(removeIndex);
+        gui.emptyLoungeChair(removeIndex);
     }
 
     private void addCustomerToQueueHelper(Customer customer){
@@ -84,9 +82,6 @@ public class CustomerQueue {
         insertIndex++; //Jump to next place in array
     }
 
-    private synchronized void removeFromLoungeChair(int pos){
-        gui.emptyLoungeChair(pos);
-    }
 
 
 }

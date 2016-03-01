@@ -40,37 +40,29 @@ public class Barber extends Thread{
 	}
 
 
-    private void daydream(){
-        gui.barberIsSleeping(pos);
-        sleep(g.barberSleep);
-        gui.barberIsAwake(pos);
-    }
-
-    private void cutHair(){
-        Customer customer = queue.removeCustomerFromQueue(this);
-        //Checks if customer is returned
-        if(customer != null) {
-            gui.fillBarberChair(pos, customer);
-            sleep(g.barberWork);
-            gui.emptyBarberChair(pos);
-        }
-    }
-
-    private void sleep(int time){
-        Random randm = new Random();
-        int random = randm.nextInt(time);
-        try {
-            thread.sleep(random);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
 
     @Override
     public void run() {
         while(true){
-            cutHair();
-            daydream();
+            Customer customer = queue.removeCustomerFromQueue();
+            //Checks if customer is
+            gui.fillBarberChair(pos, customer);
+            try {
+                sleep(g.barberWork);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            gui.emptyBarberChair(pos);
+
+
+            try {
+                gui.barberIsSleeping(pos);
+                sleep(g.barberSleep);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            gui.barberIsAwake(pos);
         }
 
     }

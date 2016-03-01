@@ -35,28 +35,19 @@ public class Doorman extends Thread{
 		thread.stop();
 	}
 
-    private synchronized void addCustomer(){
-        synchronized (queue) {
-            queue.addCustomerToQueue(new Customer(), this);
-            queue.notifyAll();
-        }
-    }
-
-    private void daydream(){
-        Random randm = new Random();
-        int random = randm.nextInt(g.doormanSleep);
-        try {
-            thread.sleep(random);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
 
     @Override
     public void run() {
         while(true){
-            addCustomer();
-            daydream();
+            queue.addCustomerToQueue(new Customer());
+
+            Random randm = new Random();
+            int random = randm.nextInt(g.doormanSleep);
+            try {
+                thread.sleep(random);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 }
