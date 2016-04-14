@@ -9,6 +9,7 @@ public class Simulator implements Constants
     private EventQueue eventQueue;
 	/** Reference to the memory unit */
     private Memory memory;
+
 	/** Reference to the GUI interface */
 	private Gui gui;
 	/** Reference to the statistics collector */
@@ -20,6 +21,12 @@ public class Simulator implements Constants
 	/** The average length between process arrivals */
 	private long avgArrivalInterval;
 	//TODO: Add member variables as needed
+
+	private IO io;
+
+	private CPU cpu;
+
+	private long maxCpuTime;
 
 	/**
 	 * Constructs a scheduling simulator with the given parameters.
@@ -43,6 +50,9 @@ public class Simulator implements Constants
 		memory = new Memory(memoryQueue, memorySize, statistics);
 		clock = 0;
 		//TODO: Add code as needed
+		io = new IO(ioQueue, avgIoTime);
+		cpu = new CPU(cpuQueue, maxCpuTime);
+		this.maxCpuTime = maxCpuTime;
     }
 
     /**
@@ -56,6 +66,7 @@ public class Simulator implements Constants
 		System.out.print("Simulating...");
 		// Genererate the first process arrival event
 		eventQueue.insertEvent(new Event(NEW_PROCESS, 0));
+		eventQueue.insertEvent(new Event(SWITCH_PROCESS, 1));
 		// Process events until the simulation length is exceeded:
 		while (clock < simulationLength && !eventQueue.isEmpty()) {
 			// Find the next event
@@ -67,14 +78,19 @@ public class Simulator implements Constants
 			clock = event.getTime();
 			// Let the memory unit and the GUI know that time has passed
 			memory.timePassed(timeDifference);
+			cpu.timePassed(timeDifference);
+			//IO.timePassed(timeDifference);
 			gui.timePassed(timeDifference);
 			// Deal with the event
 			if (clock < simulationLength) {
 				processEvent(event);
 			}
 
+
+
 			// Note that the processing of most events should lead to new
 			// events being added to the event queue!
+			//eventQueue.insertEvent(new Event(NEW_PROCESS, 0));
 
 		}
 		System.out.println("..done.");
@@ -113,6 +129,7 @@ public class Simulator implements Constants
 	private void createProcess() {
 		// Create a new process
 		Process newProcess = new Process(memory.getMemorySize(), clock);
+
 		memory.insertProcess(newProcess);
 		flushMemoryQueue();
 		// Add an event for the next process arrival
@@ -130,13 +147,15 @@ public class Simulator implements Constants
 		Process p = memory.checkMemory(clock);
 		// As long as there is enough memory, processes are moved from the memory queue to the cpu queue
 		while(p != null) {
-			
+			System.out.println(p.getMemoryNeeded());
 			// TODO: Add this process to the CPU queue!
 			// Also add new events to the event queue if needed
 
 			// Since we haven't implemented the CPU and I/O device yet,
 			// we let the process leave the system immediately, for now.
-			memory.processCompleted(p);
+			//TODO: memory.processCompleted(p);
+			cpu.insertProcess(p);
+
 			// Try to use the freed memory:
 			flushMemoryQueue();
 			// Update statistics
@@ -148,10 +167,26 @@ public class Simulator implements Constants
 	}
 
 	/**
-	 * Simulates a process switch.
+	 * Simulates a process switch. Push process into CPU, take process out of CPU and put in either
+	 * CPUQueue, IOQueue or if the process is finished take out of system.
 	 */
 	private void switchProcess() {
 		//TODO: Incomplete
+		Process p = cpu.getFirstProcess();
+		cpu.setActiveProcess(p);
+		cpu.setCpuIsActive(true);
+		gui.setCpuActive(p);
+		long timeNeeded = p.getCpuTimeNeeded();
+		if(timeNeeded > maxCpuTime){
+			if(p.getCpuTimeNeeded() > maxCpuTime)
+			eventQueue.insertEvent(new Event(END_PROCESS, clock + maxCpuTime));
+			p.setNewCpuTimeNeeded(maxCpuTime);
+		}
+		else{
+			eventQueue.insertEvent(new Event(END_PROCESS, clock + timeNeeded));
+			p.setNewCpuTimeNeeded(timeNeeded);
+		}
+
 	}
 
 	/**
@@ -159,6 +194,21 @@ public class Simulator implements Constants
 	 */
 	private void endProcess() {
 		//TODO: Incomplete
+		Process p = cpu.getFirstProcess();
+		long timeNeeded = p.getCpuTimeNeeded();
+		if (!(timeNeeded == 0)) {
+			cpu.removeFirstProcess();
+			cpu.insertProcess(p);
+
+		}
+		else{
+			cpu.removeFirstProcess();
+			memory.processCompleted(p);
+			gui.setCpuActive(null);
+
+		}
+
+		eventQueue.insertEvent(new Event(SWITCH_PROCESS, clock + 1 ));
 	}
 
 	/**
@@ -218,14 +268,14 @@ public class Simulator implements Constants
 		long avgIoTime = 500;//readLong(reader);
 
 		System.out.print("Simulation length (ms): ");
-		long simulationLength = 250000;// readLong(reader);
+		long simulationLength = 2500000;// readLong(reader);
 		while(simulationLength < 1) {
 			System.out.println("Simulation length must be at least 1 ms. Specify simulation length (ms): ");
 			simulationLength = readLong(reader);
 		}
 
 		System.out.print("Average time between process arrivals (ms): ");
-		long avgArrivalInterval = 50000;//readLong(reader);
+		long avgArrivalInterval = 500;//readLong(reader);
 
 		SimulationGui gui = new SimulationGui(memorySize, maxCpuTime, avgIoTime, simulationLength, avgArrivalInterval);
 	}
