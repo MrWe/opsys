@@ -27,6 +27,7 @@ public class Process implements Constants
 	/** The time left until the next time this process needs I/O */
     private long timeToNextIoOperation = 0;
 
+	private long ioTimeNeeded;
 	/** The time that this process has spent waiting in the memory queue */
 	private long timeSpentWaitingForMemory = 0;
 	/** The time that this process has spent waiting in the CPU queue */
@@ -57,10 +58,11 @@ public class Process implements Constants
 		memoryNeeded = 100 + (long)(Math.random()*(memorySize/4-100));
 		// CPU time needed varies from 100 to 10000 milliseconds
 		cpuTimeNeeded = 100 + (long)(Math.random()*9900);
+
+		ioTimeNeeded = 100 + (long)(Math.random()*9900);
 		// Average interval between I/O requests varies from 1% to 25% of CPU time needed
 		avgIoInterval = (1 + (long)(Math.random()*25))*cpuTimeNeeded/100;
-
-		//TODO line under is for testing
+		//TODO: Line under is for test
 		timeToNextIoOperation = avgIoInterval;
 		// The first and latest event involving this process is its creation
 		timeOfLastEvent = creationTime;
@@ -138,7 +140,12 @@ public class Process implements Constants
 		}
 	}
 
-	public void setTimeToNextIoOperation(long time){
+	public long getIoTimeNeeded(){
+		return ioTimeNeeded;
+	}
+
+
+	public void setNewTimeToNextIoOperation(long time){
 		if((timeToNextIoOperation - time) <= 0){
 			timeToNextIoOperation = 0;
 		}
@@ -150,5 +157,7 @@ public class Process implements Constants
 	public long getTimeToNextIoOperation(){
 		return timeToNextIoOperation;
 	}
+
+
 
 }

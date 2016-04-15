@@ -10,4 +10,18 @@ public class IO {
         this.IOQueue = IOQueue;
         this.avgIoTime = avgIoTime;
     }
+
+    public void insertProcess(Process p){
+        IOQueue.insert(p);
+    }
+
+    public Process getFirstProcess(){
+        return (Process)IOQueue.getNext();
+    }
+
+    public Process removeFirstProcess(){
+        Process process = (Process)IOQueue.getNext();
+        IOQueue.removeNext();
+        return process;
+    }
 }

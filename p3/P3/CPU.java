@@ -56,7 +56,6 @@ public class CPU {
 
     public void setActiveProcess(Process p){
         this.activeProcess = p;
-
     }
 
     public Process getActiveProcess(){

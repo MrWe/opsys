@@ -71,7 +71,6 @@ public class Simulator implements Constants
 		while (clock < simulationLength && !eventQueue.isEmpty()) {
 			// Find the next event
 			Event event = eventQueue.getNextEvent();
-			System.out.println(event.getType());
 			// Find out how much time that passed...
 			long timeDifference = event.getTime()-clock;
 			// ...and update the clock.
@@ -147,7 +146,7 @@ public class Simulator implements Constants
 		Process p = memory.checkMemory(clock);
 		// As long as there is enough memory, processes are moved from the memory queue to the cpu queue
 		while(p != null) {
-			System.out.println(p.getMemoryNeeded());
+
 			// TODO: Add this process to the CPU queue!
 			// Also add new events to the event queue if needed
 
@@ -167,25 +166,32 @@ public class Simulator implements Constants
 	}
 
 	/**
-	 * Simulates a process switch. Push process into CPU, take process out of CPU and put in either
-	 * CPUQueue, IOQueue or if the process is finished take out of system.
+	 * Simulates a process switch.
 	 */
 	private void switchProcess() {
 		//TODO: Incomplete
-		Process p = cpu.getFirstProcess();
-		cpu.setActiveProcess(p);
-		cpu.setCpuIsActive(true);
-		gui.setCpuActive(p);
-		long timeNeeded = p.getCpuTimeNeeded();
-		if(timeNeeded > maxCpuTime){
-			if(p.getCpuTimeNeeded() > maxCpuTime)
-			eventQueue.insertEvent(new Event(END_PROCESS, clock + maxCpuTime));
-			p.setNewCpuTimeNeeded(maxCpuTime);
+		if(!cpu.isEmpty()) {
+			Process p = cpu.getFirstProcess();
+			gui.setCpuActive(p);
+			long timeNeeded = p.getCpuTimeNeeded();
+			long timeToIoOp = p.getTimeToNextIoOperation();
+			if (!(timeToIoOp < timeNeeded) || timeToIoOp == 0) {
+				if (timeNeeded > maxCpuTime) {
+					if (p.getCpuTimeNeeded() > maxCpuTime)
+						eventQueue.insertEvent(new Event(END_PROCESS, clock + maxCpuTime));
+					p.setNewCpuTimeNeeded(maxCpuTime);
+				} else {
+					eventQueue.insertEvent(new Event(END_PROCESS, clock + timeNeeded));
+					p.setNewCpuTimeNeeded(timeNeeded);
+				}
+			} else {
+				eventQueue.insertEvent(new Event(IO_REQUEST, clock + timeToIoOp));
+			}
+
 		}
-		else{
-			eventQueue.insertEvent(new Event(END_PROCESS, clock + timeNeeded));
-			p.setNewCpuTimeNeeded(timeNeeded);
-		}
+		long nextArrivalTime = clock + 1 + (long)(2*Math.random()*avgArrivalInterval);
+		eventQueue.insertEvent(new Event(SWITCH_PROCESS, nextArrivalTime));
+
 
 	}
 
@@ -217,6 +223,17 @@ public class Simulator implements Constants
 	 */
 	private void processIoRequest() {
 		//TODO: Incomplete
+		if(!cpu.isEmpty()) {
+			Process p = cpu.getFirstProcess();
+			cpu.removeFirstProcess();
+			gui.setCpuActive(null);
+			io.insertProcess(p);
+			gui.setIoActive(p);
+			memory.processCompleted(p);
+			eventQueue.insertEvent(new Event(SWITCH_PROCESS, clock + 1));
+		}
+
+
 	}
 
 	/**
